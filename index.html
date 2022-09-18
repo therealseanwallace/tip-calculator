@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="/scripts/script.js" defer></script>
 </head>
 <body>
 <div id="app">
@@ -32,14 +33,17 @@
       <div id="select-tip-div">
         <h2 id="tip-select-h2" class="headers lowerheader">Select Tip %</h2>
         <div id="tip-selectors">
-          <input type="button" value="5%">
-          <input type="button" value="10%">
-          <input type="button" value="15%">
-          <input type="button" value="25%">
-          <input type="button" value="50%">
-          <button class="button">
-            <span class="innerbutton">Custom</span>
-          </button>
+          <input type="button" class="fixed-tip" value="5%">
+          <input type="button" class="fixed-tip" value="10%">
+          <input type="button" class="fixed-tip" value="15%">
+          <input type="button" class="fixed-tip" value="25%">
+          <input type="button" class="fixed-tip" value="50%">
+          <div class="input-wrapper">
+            <input type="number" name="" id="custom-input" class="text-input">
+            <span id="custom-placeholder">Custom</span>
+          </div>
+            
+          
           
         </div>
       </div>
