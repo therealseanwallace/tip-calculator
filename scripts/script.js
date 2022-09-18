@@ -19,6 +19,21 @@ function clearResults() {
 
 };
 
+function clearTextInputs() {
+  const inputs = document.querySelectorAll(".text-input");
+  inputs.forEach ((input) => {
+    input.value = "";
+    
+  }
+  )
+}
+
+(function cleanSlate() {
+  console.log("Clean slate!");
+  clearTextInputs();
+  clearResults();
+}());
+
 (function addEvents() {
   
   const textInput = document.querySelectorAll('.text-input');
@@ -36,15 +51,25 @@ function getValue(e) {
 }
 
 function updateValue(value, id) {
+  const fadePlaceholder = document.querySelector("#custom-placeholder")
     if (id === "bill-input") {
       bill = value;
       bill = Number(bill);
       
       
     } else if (id === "custom-input") {
-      customTip = value;
-      tipPercent = customTip;
-      tipPercent = Number(tipPercent);
+      console.log("Value is", value, "while value.length is", value.length);
+      if (value.length === 0) {
+        fadePlaceholder.classList.remove("hidden");
+        fadePlaceholder.classList.add("visible");
+      } else {
+        fadePlaceholder.classList.add("hidden");
+        customTip = value;
+        tipPercent = customTip;
+        tipPercent = Number(tipPercent);
+      }
+      
+
       
     } else {
       numberPeople = value;
