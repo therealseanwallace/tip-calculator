@@ -7,15 +7,28 @@ let totalTip = 0;
 let tipPerPerson = 0;
 let totalPerPerson = 0;
 
-(function () {
-  console.log("function active");
+function clearResults() {
+  const amounts = document.querySelectorAll(".amount");
+  amounts.forEach ((amount) => {
+    console.log("this is an amount");
+    console.log(amount.textContent);
+    amount.textContent = "";
+    console.log(amount.textContent);
+    amount.textContent = "$0.00"
+  })
+
+};
+
+(function addEvents() {
+  
   const textInput = document.querySelectorAll('.text-input');
   console.log(textInput);
   textInput.forEach(input => {
-    console.log("adding event");
     input.addEventListener('input', getValue);
     })
 }());
+
+
 
 function getValue(e) {
   updateValue(e.target.value, e.target.id);
@@ -48,10 +61,10 @@ function calculator(bill, tipPercent, numberPeople){
   console.log("totalTip is", totalTip);
   console.log("tipPerPerson is", tipPerPerson);
   console.log("totalPerPerson is", totalPerPerson);
-  updateText();
+  updateResults();
 }
 
-function updateText() {
+function updateResults() {
   const tipPer = document.querySelector("#tip-per");
   tipPer.textContent = "";
   if (isNaN(tipPerPerson.toFixed(2)) === true ||  tipPerPerson === Infinity) {
