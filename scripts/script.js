@@ -25,10 +25,14 @@ function clearTextInputs() {
   )
 }
 
-(function cleanSlate() {
+(function() {
+  cleanSlate();
+}());
+
+function cleanSlate() {
   clearTextInputs();
   clearResults();
-}());
+}
 
 (function addEvents() {
   
@@ -58,7 +62,9 @@ function clearCustom() {
 }
 
 function figureValues(value, id, itemClass) {
-  if (itemClass === "fixed-tip") {
+  if (id ==="reset-button") {
+    cleanSlate();
+  } else if (itemClass === "fixed-tip") {
     clearCustom();
     whatIs = "fixed";
     } else if (id === "bill-input") {
@@ -79,7 +85,6 @@ function figureValues(value, id, itemClass) {
 }
 
 function updateValues(value, whatIs) {
-  console.log("Updating values", value, whatIs);
   if (whatIs === "fixed" || whatIs === "custom") {
     if (whatIs === "fixed") {
       value = value.slice(0, -1);
@@ -87,32 +92,22 @@ function updateValues(value, whatIs) {
       
     }
     tipPercent = value;
-    console.log("Updating tipPercent to", value);
-    console.log("Updated tipPercent to", tipPercent);
   } else if (whatIs === "bill") {
     bill = value;
     bill = Number(bill);
-    console.log("Updating bill to", value);
-    console.log("Updated bill to", bill);
   } else {
     numberPeople = value;
-    console.log("Updating numberPeople to", value);
-    console.log("Updated numberPeople to", numberPeople);
   }
   calculator(bill, tipPercent, numberPeople);
-  console.log("Launching calculator with bill, tipPercent, numberPeople as: bill-", bill, "tipPercent-", tipPercent, "numberPeople-",numberPeople);
 }
 
 function calculator(bill, tipPercent, numberPeople){
-  setTimeout(function() {console.log("Calculator launched! bill, tipPercent and numberPeople are:", bill,",",tipPercent,",",numberPeople), 100});
-  setTimeout(function() {console.log("Calculator received the following data types:", typeof bill, ",", typeof tipPercent,",", typeof numberPeople), 200});
   if (numberPeople.length === 0 || numberPeople === 0) {
     numberPeople = 1;
   }
   totalTip = bill * (tipPercent / 100);
   tipPerPerson = totalTip / numberPeople;
   totalPerPerson = (bill + totalTip) / numberPeople;
-  setTimeout(function() {console.log("calculator results are as follows (totalTip, tipPerPerson, totalPerPerson",totalTip,",",tipPerPerson,",",totalPerPerson,". Launching updateResults."), 100});
   updateResults();
 }
 
