@@ -34,13 +34,16 @@ function clearTextInputs() {
   
   const textInput = document.querySelectorAll('.text-input');
   const buttons = document.querySelectorAll('input[type=button]');
+  
   textInput.forEach(input => {
     input.addEventListener('input', getValue);
-    })
+  })
   buttons.forEach(button => {
     button.addEventListener('click', getValue);
   })
+  
 }());
+
 
 function getValue(e) {
   figureValues(e.target.value, e.target.id, e.target.classList[0]);
@@ -90,34 +93,6 @@ function updateValues(value, whatIs) {
   calculator(bill, tipPercent, numberPeople);
   console.log("Launching calculator with bill, tipPercent, numberPeople as: bill-", bill, "tipPercent-", tipPercent, "numberPeople-",numberPeople);
 }
-
-/*function updateValue(value, id, itemClass) {
-  const fadePlaceholder = document.querySelector("#custom-placeholder")
-    if (itemClass === "fixed-tip") {
-      tipPercent = value;
-      calculator(bill, tipPercent, numberPeople);
-      return;
-    } else if (id === "bill-input") {
-      bill = value;
-      bill = Number(bill);      
-    } else if (id === "custom-input") {
-      if (value.length === 0) {
-        fadePlaceholder.classList.remove("hidden");
-        fadePlaceholder.classList.add("visible");
-        tipPercent = 0;
-      } else {
-        fadePlaceholder.classList.add("hidden");
-        customTip = value;
-        tipPercent = customTip;
-        tipPercent = Number(tipPercent);
-      }
-    } else {
-      numberPeople = value;
-      numberPeople = Number(numberPeople);
-      
-    }
-    calculator(bill, tipPercent, numberPeople);
-}*/
 
 function calculator(bill, tipPercent, numberPeople){
   setTimeout(function() {console.log("Calculator launched! bill, tipPercent and numberPeople are:", bill,",",tipPercent,",",numberPeople), 100});
