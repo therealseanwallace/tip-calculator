@@ -7,7 +7,6 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   
   <title>Frontend Mentor | Tip calculator app</title>
-  <link rel="stylesheet" href="/styles/reset.css">
   <link rel="stylesheet" href="/styles/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,37 +20,39 @@
   </header>
   <div id="appmain">
     <fieldset id="appform">
-      <div id="bill-input-div">
+      <div id="left">
+        <div id="bill-input-div">
         
-        <h2 id="bill-h2" class="headers lowerheader">Bill</h2>
-        
-        <div class="input-wrapper">
-          <input type="number" name="" id="bill-input" class="text-input">
-          <span class="placeholder"><img src="/images/icon-dollar.svg"></span>
-        </div>
-      </div>
-      <div id="select-tip-div">
-        <h2 id="tip-select-h2" class="headers lowerheader">Select Tip %</h2>
-        <div id="tip-selectors">
-          <input type="button" class="fixed-tip" value="5%">
-          <input type="button" class="fixed-tip" value="10%">
-          <input type="button" class="fixed-tip" value="15%">
-          <input type="button" class="fixed-tip" value="25%">
-          <input type="button" class="fixed-tip" value="50%">
+          <h2 id="bill-h2" class="headers lowerheader">Bill</h2>
+          
           <div class="input-wrapper">
-            <input type="number" name="" id="custom-input" class="text-input">
-            <span id="custom-placeholder">Custom</span>
+            <input type="number" name="" id="bill-input" class="text-input inputs wide" placeholder="0">
+            <span class="placeholder" id="dollar"><img src="/images/icon-dollar.svg"></span>
           </div>
-            
-          
-          
         </div>
-      </div>
-      <div id="people-div">
-        <h2 id="people-h2" class="headers lowerheader">Number of People</h2>
-        <div class="input-wrapper">
-        <input type="number" name="" id="number-people" class="text-input">
-        <span class="placeholder"><img src="/images/icon-person.svg"></span>
+        <div id="select-tip-div">
+          <h2 id="tip-select-h2" class="headers lowerheader">Select Tip %</h2>
+          <div id="tip-selectors">
+            <input type="button" class="fixed-tip inputs" value="5%">
+            <input type="button" class="fixed-tip inputs" value="10%">
+            <input type="button" class="fixed-tip inputs" value="15%">
+            <input type="button" class="fixed-tip inputs" value="25%">
+            <input type="button" class="fixed-tip inputs" value="50%">
+            <div class="input-wrapper" id="custom-wrapper">
+              <input type="number" name="" id="custom-input" class="text-input inputs">
+              <span id="custom-placeholder">Custom</span>
+            </div>
+              
+            
+            
+          </div>
+        </div>
+        <div id="people-div">
+          <h2 id="people-h2" class="headers lowerheader">Number of People</h2>
+          <div class="input-wrapper">
+          <input type="number" name="" id="number-people" class="text-input inputs wide" placeholder="0">
+          <span class="placeholder" id="personPH"><img src="/images/icon-person.svg"></span>
+          </div>
         </div>
       </div>
       <div id="result-div-container">
@@ -72,7 +73,7 @@
           <p class="amount" id="total">$32.79</p>
           
         </div>
-        <input id="reset-button" type="button" value="RESET">
+        <input id="reset-button" type="button" value="RESET" class="inputs">
         </div>
       </div>
 

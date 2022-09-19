@@ -1,5 +1,6 @@
 .attribution { font-size: 11px; text-align: center; }
 .attribution a { color: hsl(228, 45%, 44%); }
+input { outline: none; }
 
 * {
   font-family: "Space Mono", sans-serif;
@@ -10,6 +11,7 @@ body {
   height: 933px;
   background: hsl(185, 41%, 84%);
   margin: auto;
+  box-sizing: border-box;
 }
 
 header {
@@ -19,23 +21,19 @@ header {
   
 }
 
-
-
 .headers {
-  color: hsl(183, 100%, 15%);
+  color: hsl(184, 14%, 56%);
   font-size: 14px;
 }
 
 h2 {
   margin: 40px 0 12px 0;
 }
+/* INPUT STYLES */
 
 #appform {
   border-radius: 20px 20px 0 0;
 }
-
-
-
 
 #appform {
   background: white;
@@ -45,8 +43,31 @@ h2 {
   align-items: center;
 }
 
-.input-wrapper{
+input[type="number"] {
+
+  background-color : hsl(202, 50%, 97%);
+  width: 294px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  height: 40px;
+  text-indent: 12px;
+  text-align: right;
+  font-size: 24px;
+  font-family: "Space Mono";
+  font-weight: bold;
+  color: hsl(183, 100%, 15%);
+}
+
+input[type="number"]:hover {
+
+  border-color:hsl(172, 67%, 45%);
+  
+}
+
+.input-wrapper {
   position: relative;
+  border: 3px transparent;
+  box-sizing: border-box;
 }
 
 .placeholder {
@@ -61,12 +82,14 @@ h2 {
 
 #custom-placeholder {
   position: absolute;
+  font-weight: bold;
   font-size: 22px;
   color: hsl(184, 14%, 56%);
   pointer-events: none;
   right: 10px;
   top: 4px;
   transition: 0.1s ease all;
+  padding: 2px 4px 0 0;
   
 }
 
@@ -94,10 +117,7 @@ h2 {
   
 }
 
-#custom-input {
-  margin-left: 26px;
-  color: hsl(186, 14%, 43%);
-}
+
 
 .button {
   background: hsl(202, 50%, 97%);
@@ -170,30 +190,20 @@ input[type=number] {
 
 .mainheader {
   font-size: 24px; 
+  color:hsl(183, 100%, 15%);
 }
 
 .text-input {
   padding-right: 20px;
 }
 
-input[type="number"], textarea {
-
-  background-color : hsl(202, 50%, 97%);
-  width: 320px;
-  border-radius: 5px;
-  border: none;
-  height: 40px;
-  text-indent: 12px;
-  text-align: right;
-  font-size: 24px;
-  font-family: "Space Mono";
-  font-weight: bold;
-  color: hsl(183, 100%, 15%);
+.text-input:hover {
+  cursor: pointer;
 }
 
-input[type="text"]::placeholder {
-  font-size: 20px;
-  
+.text-input:focus-visible {
+  padding-right: 20px;
+  border-color: hsl(172, 67%, 45%);
 }
 
 #custom-input {
@@ -201,9 +211,37 @@ input[type="text"]::placeholder {
   width: 153px;
   height: 50px;
   margin: 0;
-  padding: 0;
-  border: 0;
+  padding: 20px;
+  border: none;
+  border-color: hsl(202, 50%, 97%);
+  box-sizing: border-box;
+  color: hsl(186, 14%, 43%);
+  
 }
+
+#custom-input:hover {
+  border: 2px solid hsl(172, 67%, 45%);
+  cursor: pointer;
+}
+
+#custom-input:focus-visible {
+  border: 2px solid hsl(172, 67%, 45%);
+}
+
+#reset-button:hover {
+  background-color: hsl(185, 41%, 84%);
+  color: hsl(183, 100%, 15%);
+  cursor: pointer;
+}
+
+.fixed-tip:hover {
+  background-color: hsl(172, 67%, 45%);
+  
+}
+
+
+
+
 
 .visible {
   visibility: visible;
@@ -215,4 +253,93 @@ input[type="text"]::placeholder {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s 2s, opacity 2s linear;
+}
+
+@media only screen and (min-width: 920px) {
+  body {
+    width: 920px;
+  }
+
+  #appform {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  #bill-input {
+    margin-top: 1%;
+    margin-bottom: 1%;
+
+  }
+
+  #result-div-container {
+    width: 50%; 
+  }
+
+  #result-div {
+    width: 80%;
+}
+
+  #left {
+    width: 50%;
+    margin-left: 4%;
+    margin-top: -4%;
+  }
+
+  .wide {
+    width: 86%!important;
+  }
+
+  #tip-selectors {
+    justify-content: space-between;
+    width: 91.7%;
+  }
+  
+  .fixed-tip {
+    width: 30%;
+  }
+
+  #custom-wrapper {
+    width: 30%;
+  }
+
+  #custom-input {
+    width: 100%;
+  }
+
+  #result-div-container {
+    height: 420px;
+    margin-bottom: 18px;
+    margin-top: 24px;
+    margin-right: 14px;
+  
+  }
+
+  #reset-button {
+    margin-top: 80px;
+  
+  }
+
+  #select-tip-div {
+    margin-bottom: 1%;
+  }
+
+  #custom-placeholder {
+    margin-right: 10px;
+  }
+
+  #appform {
+    border-radius: 20px;
+  }
+
+  .amount {
+    font-size: 40px;
+  }
+
+  #dollar {
+    top: 12px;
+  }
+
+  #personPH {
+    top: 6px;
+  }
 }

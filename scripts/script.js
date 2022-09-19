@@ -49,8 +49,17 @@ function getValue(e) {
   figureValues(e.target.value, e.target.id, e.target.classList[0]);
 }
 
+function clearCustom() {
+  const clearCustom = document.querySelector("#custom-input");
+  clearCustom.value = "";
+  const fadePlaceholder = document.querySelector("#custom-placeholder");
+  fadePlaceholder.classList.remove("hidden");
+  fadePlaceholder.classList.add("visible");
+}
+
 function figureValues(value, id, itemClass) {
   if (itemClass === "fixed-tip") {
+    clearCustom();
     whatIs = "fixed";
     } else if (id === "bill-input") {
     whatIs = "bill";
