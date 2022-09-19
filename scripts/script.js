@@ -9,11 +9,8 @@ let totalPerPerson = 0;
 
 function clearResults() {
   const amounts = document.querySelectorAll(".amount");
-  amounts.forEach ((amount) => {
-    console.log("this is an amount");
-    console.log(amount.textContent);
+  amounts.forEach ((amount) => {  
     amount.textContent = "";
-    console.log(amount.textContent);
     amount.textContent = "$0.00"
   })
 
@@ -29,7 +26,6 @@ function clearTextInputs() {
 }
 
 (function cleanSlate() {
-  console.log("Clean slate!");
   clearTextInputs();
   clearResults();
 }());
@@ -37,55 +33,102 @@ function clearTextInputs() {
 (function addEvents() {
   
   const textInput = document.querySelectorAll('.text-input');
-  console.log(textInput);
+  const buttons = document.querySelectorAll('input[type=button]');
   textInput.forEach(input => {
     input.addEventListener('input', getValue);
     })
+  buttons.forEach(button => {
+    button.addEventListener('click', getValue);
+  })
 }());
 
-
-
 function getValue(e) {
-  updateValue(e.target.value, e.target.id);
-  console.log("getting value, id", e.target.value, e.target.id)
+  figureValues(e.target.value, e.target.id, e.target.classList[0]);
 }
 
-function updateValue(value, id) {
+function figureValues(value, id, itemClass) {
+  if (itemClass === "fixed-tip") {
+    whatIs = "fixed";
+    } else if (id === "bill-input") {
+    whatIs = "bill";
+  } else if (id === "custom-input") {
+    whatIs = "custom";
+    const fadePlaceholder = document.querySelector("#custom-placeholder")
+    if (value.length === 0) {
+      fadePlaceholder.classList.remove("hidden");
+      fadePlaceholder.classList.add("visible");
+    } else {
+      fadePlaceholder.classList.add("hidden");
+    }
+  } else {
+    whatIs = "people";
+  }
+  updateValues(value, whatIs)  
+}
+
+function updateValues(value, whatIs) {
+  console.log("Updating values", value, whatIs);
+  if (whatIs === "fixed" || whatIs === "custom") {
+    if (whatIs === "fixed") {
+      value = value.slice(0, -1);
+      value = Number(value);
+      
+    }
+    tipPercent = value;
+    console.log("Updating tipPercent to", value);
+    console.log("Updated tipPercent to", tipPercent);
+  } else if (whatIs === "bill") {
+    bill = value;
+    bill = Number(bill);
+    console.log("Updating bill to", value);
+    console.log("Updated bill to", bill);
+  } else {
+    numberPeople = value;
+    console.log("Updating numberPeople to", value);
+    console.log("Updated numberPeople to", numberPeople);
+  }
+  calculator(bill, tipPercent, numberPeople);
+  console.log("Launching calculator with bill, tipPercent, numberPeople as: bill-", bill, "tipPercent-", tipPercent, "numberPeople-",numberPeople);
+}
+
+/*function updateValue(value, id, itemClass) {
   const fadePlaceholder = document.querySelector("#custom-placeholder")
-    if (id === "bill-input") {
+    if (itemClass === "fixed-tip") {
+      tipPercent = value;
+      calculator(bill, tipPercent, numberPeople);
+      return;
+    } else if (id === "bill-input") {
       bill = value;
-      bill = Number(bill);
-      
-      
+      bill = Number(bill);      
     } else if (id === "custom-input") {
-      console.log("Value is", value, "while value.length is", value.length);
       if (value.length === 0) {
         fadePlaceholder.classList.remove("hidden");
         fadePlaceholder.classList.add("visible");
+        tipPercent = 0;
       } else {
         fadePlaceholder.classList.add("hidden");
         customTip = value;
         tipPercent = customTip;
         tipPercent = Number(tipPercent);
       }
-      
-
-      
     } else {
       numberPeople = value;
       numberPeople = Number(numberPeople);
       
     }
     calculator(bill, tipPercent, numberPeople);
-}
+}*/
 
 function calculator(bill, tipPercent, numberPeople){
+  setTimeout(function() {console.log("Calculator launched! bill, tipPercent and numberPeople are:", bill,",",tipPercent,",",numberPeople), 100});
+  setTimeout(function() {console.log("Calculator received the following data types:", typeof bill, ",", typeof tipPercent,",", typeof numberPeople), 200});
+  if (numberPeople.length === 0 || numberPeople === 0) {
+    numberPeople = 1;
+  }
   totalTip = bill * (tipPercent / 100);
   tipPerPerson = totalTip / numberPeople;
   totalPerPerson = (bill + totalTip) / numberPeople;
-  console.log("totalTip is", totalTip);
-  console.log("tipPerPerson is", tipPerPerson);
-  console.log("totalPerPerson is", totalPerPerson);
+  setTimeout(function() {console.log("calculator results are as follows (totalTip, tipPerPerson, totalPerPerson",totalTip,",",tipPerPerson,",",totalPerPerson,". Launching updateResults."), 100});
   updateResults();
 }
 
@@ -103,7 +146,7 @@ function updateResults() {
     total.textContent = "$0.00";
   } else {
     total.textContent = ("$", totalPerPerson.toFixed(2));
-    console.log(totalPerPerson.toFixed(2));
+    
   }
     
 }
